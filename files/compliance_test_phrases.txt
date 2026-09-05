@@ -1,0 +1,39 @@
+COMPLIANCE CLASSIFIER TEST PHRASES
+====================================
+Paste these one at a time into whatever field/endpoint calls predict_compliance().
+Expected results are noted for each - compare against what your website actually returns.
+
+--- WEAK_CREDENTIAL (expect: High severity) ---
+1. Device login password is set to 'admin123', a common or default credential.
+2. Root account passphrase is set to 'toor2024', a weak and easily guessable value.
+
+--- INSECURE_MGMT_PROTOCOL (expect: Critical severity) ---
+3. Remote management is enabled over telnet, which transmits credentials unencrypted.
+4. Administrative access to this device is available over plain HTTP without TLS.
+
+--- OPEN_ACL (expect: Critical severity) ---
+5. Access control rule permits traffic from any source to any destination on all ports.
+6. Firewall policy allows all inbound traffic without any source or port restriction.
+
+--- DEFAULT_SNMP_COMMUNITY (expect: Medium severity) ---
+7. SNMP community string is set to the default value 'public'.
+8. SNMP community string is set to the default value 'private' with read-write access.
+
+--- NO_LOGGING (expect: Medium severity) ---
+9. No syslog server is configured; device events are not being logged.
+10. Audit logging is disabled and no external log destination is set.
+
+--- WEAK_ENCRYPTION (expect: High severity) ---
+11. Encryption algorithm in use is DES, considered cryptographically weak.
+12. Password hashing uses MD5, which is broken and unsuitable for security purposes.
+
+--- MULTIPLE VIOLATIONS AT ONCE (expect: 2 controls flagged, Critical) ---
+13. Device uses telnet for management with default-style password 'admin1'.
+
+--- COMPLIANT (expect: no violations, Low severity) ---
+14. Device login password is set to a high-entropy value 'Xk9#mP2vL8q!'.
+15. Remote management is enabled over SSH with strong encryption.
+16. Access control rule permits traffic only from 10.0.5.0/24 to port 443.
+17. SNMP community string is set to a custom, non-default value.
+18. Syslog server is configured at 10.0.0.5 for centralized logging.
+19. Encryption algorithm in use is AES-256.

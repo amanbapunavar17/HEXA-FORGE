@@ -1,0 +1,19 @@
+config firewall address
+ edit "LAN_NET_7"
+ set subnet 192.168.7.0 255.255.255.0
+config vpn ipsec phase1-interface
+ edit "branch-3"
+ set remote-gw 203.0.113.5
+config system admin
+ edit "admin"
+ set password Admin@Wall
+config firewall policy
+ edit 12
+ set srcintf "lan"
+ set dstintf "wan1"
+ set action accept
+config system interface
+ edit "wan1"
+ set ip 203.0.113.10 255.255.255.0
+config log syslogd setting
+ set status disable

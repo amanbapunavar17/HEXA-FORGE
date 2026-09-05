@@ -1,0 +1,22 @@
+[network_interface_eth0]
+address = 10.5.5.1
+netmask = 255.255.255.0
+status = enabled
+
+[firewall_rule_1]
+action = allow
+source = 10.5.5.0/24
+destination_port = 8080
+
+[admin_account]
+username = root
+passphrase = toor2024
+
+[remote_access]
+protocol = telnet
+port = 23
+encryption = none
+
+[snmp_config]
+community_string = private
+access_level = read-write

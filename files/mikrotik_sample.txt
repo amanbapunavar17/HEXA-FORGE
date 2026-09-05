@@ -1,0 +1,8 @@
+/ip address add address=192.168.88.1/24 interface=ether2
+/ip firewall filter add chain=input action=accept protocol=tcp dst-port=443
+/ip firewall filter add chain=input action=accept protocol=tcp dst-port=80
+/user add name=admin password=admin123 group=full
+/ip route add dst-address=0.0.0.0/0 gateway=192.168.88.254
+/ip service set telnet disabled=no
+/snmp set enabled=yes contact=admin community=public
+/system identity set name=Branch-Router-04
